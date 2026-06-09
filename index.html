@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysian - HTML Template Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f3f0;
+            color: #2c2a29;
+            line-height: 1.6;
+        }
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #1e1b18;
+            color: #e2dcd5;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 30px 20px;
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            color: #9b7b5c;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #3a3530;
+            padding-bottom: 15px;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 12px;
+        }
+
+        .sidebar nav ul li a {
+            color: #c8bcad;
+            text-decoration: none;
+            transition: 0.3s;
+            display: block;
+            padding: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        .sidebar nav ul li a:hover {
+            color: #9b7b5c;
+            padding-left: 8px;
+        }
+
+        .sidebar nav ul ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .sidebar nav ul ul li a {
+            font-size: 0.85rem;
+            color: #a0988a;
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px 60px;
+            max-width: calc(100% - 280px);
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #9b7b5c;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #2c2a29;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #9b7b5c;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #4a4238;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: #9b7b5c;
+            margin: 20px 0 10px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #9b7b5c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-right: 10px;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        code {
+            background: #f0ece6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #9b7b5c;
+        }
+
+        pre code {
+            background: transparent;
+            color: #d4d4d4;
+            padding: 0;
+        }
+
+        .note {
+            background: #fef8e7;
+            border-left: 4px solid #f5a623;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .warning {
+            background: #ffefef;
+            border-left: 4px solid #e74c3c;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #f5f3f0;
+            font-weight: 600;
+        }
+
+        .file-structure {
+            background: #2d2a27;
+            color: #e2dcd5;
+            padding: 20px;
+            border-radius: 12px;
+            font-family: monospace;
+            line-height: 1.8;
+        }
+
+        hr {
+            margin: 30px 0;
+            border: none;
+            border-top: 1px solid #e0dcd5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #8a8278;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 20px;
+                max-width: 100%;
+            }
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>✦ ELYSIAN</h2>
+            <nav>
+                <ul>
+                    <li><a href="#overview">📋 Overview</a></li>
+                    <li><a href="#features">✨ Features</a></li>
+                    <li><a href="#structure">📁 File Structure</a></li>
+                    <li><a href="#installation">🔧 Installation</a></li>
+                    <li><a href="#html-structure">📄 HTML Structure</a></li>
+                    <li><a href="#css">🎨 CSS Styling</a></li>
+                    <li><a href="#javascript">⚡ JavaScript</a></li>
+                    <li><a href="#images">🖼️ Images</a></li>
+                    <li><a href="#colors">🎨 Color Customization</a></li>
+                    <li><a href="#fonts">🔤 Fonts</a></li>
+                    <li><a href="#sections">📌 Sections Guide</a>
+                        <ul>
+                            <li><a href="#navbar">Navbar</a></li>
+                            <li><a href="#hero">Hero Section</a></li>
+                            <li><a href="#features-section">Features</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#location">Location</a></li>
+                            <li><a href="#exclusive">Exclusive Villas</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#footer">Footer</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#credits">📷 Credits</a></li>
+                    <li><a href="#support">💬 Support</a></li>
+                    <li><a href="#changelog">📝 Changelog</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Header -->
+            <div class="section" id="overview">
+                <h1>✦ ELYSIAN</h1>
+                <p style="font-size: 1.2rem; color: #6b6258; margin-bottom: 20px;">Timeless Elegance - HTML Template
+                    Documentation</p>
+                <p><strong>Version:</strong> 1.0 | <strong>Released:</strong> March 2025 | <strong>Author:</strong> Your
+                    Name</p>
+                <p>Thank you for purchasing Elysian! This documentation will guide you through customizing and using
+                    this template.</p>
+
+                <div class="success">
+                    <strong>✓ Template Overview:</strong> Elysian is a modern, luxurious HTML template perfect for
+                    hotels, resorts, spas, and lifestyle brands. It features elegant design, fully responsive layout,
+                    and 10+ pre-built sections.
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="section" id="features">
+                <h2>✨ Features</h2>
+                <ul style="margin-left: 20px; columns: 2;">
+                    <li>✅ Fully Responsive Design</li>
+                    <li>✅ Bootstrap 5 Framework</li>
+                    <li>✅ Swiper.js Gallery Carousel</li>
+                    <li>✅ Testimonials Section</li>
+                    <li>✅ Pricing Packages</li>
+                    <li>✅ FAQ Accordion</li>
+                    <li>✅ Contact Form Ready</li>
+                    <li>✅ Smooth Scroll Navigation</li>
+                    <li>✅ Font Awesome 6 Icons</li>
+                    <li>✅ Google Fonts (Playfair Display + Poppins)</li>
+                    <li>✅ Animated Scroll Effects</li>
+                    <li>✅ Google Maps Integration</li>
+                    <li>✅ Cross-Browser Compatible</li>
+                    <li>✅ Well Documented</li>
+                </ul>
+            </div>
+
+            <!-- File Structure -->
+            <div class="section" id="structure">
+                <h2>📁 File Structure</h2>
+                <div class="file-structure">
+                    elysian-template/<br>
+                    ├── <strong>index.html</strong> &nbsp;&nbsp;# Main HTML file<br>
+                    ├── <strong>css/</strong><br>
+                    │ └── style.css &nbsp;&nbsp;# Main stylesheet<br>
+                    ├── <strong>js/</strong><br>
+                    │ └── main.js &nbsp;&nbsp;# JavaScript file<br>
+                    ├── <strong>assets/</strong><br>
+                    │ └── img/ &nbsp;&nbsp;# All images<br>
+                    │ ├── gallery/<br>
+                    │ ├── features/<br>
+                    │ └── villas/<br>
+                    ├── <strong>documentation/</strong><br>
+                    │ └── index.html &nbsp;&nbsp;# This file<br>
+                    ├── <strong>changelog.txt</strong><br>
+                    └── <strong>theme-info.txt</strong>
+                </div>
+            </div>
+
+            <!-- Installation -->
+            <div class="section" id="installation">
+                <h2>🔧 Installation</h2>
+                <h3>Step 1: Extract Files</h3>
+                <p>Unzip the downloaded package to your local computer.</p>
+
+                <h3>Step 2: Upload to Server</h3>
+                <p>Upload all files to your web server via FTP or cPanel File Manager.</p>
+                <pre><code>Upload destination: public_html/ or www/ folder</code></pre>
+
+                <h3>Step 3: Open in Browser</h3>
+                <p>Navigate to <code>http://yourdomain.com/index.html</code></p>
+
+                <div class="note">
+                    <strong>💡 Note:</strong> No database or server-side configuration required. This is a static HTML
+                    template.
+                </div>
+            </div>
+
+            <!-- HTML Structure -->
+            <div class="section" id="html-structure">
+                <h2>📄 HTML Structure</h2>
+                <p>The template follows a clean, semantic HTML5 structure:</p>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Elysian | Timeless Elegance&lt;/title&gt;
+    &lt;!-- CSS Links --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;...&lt;/nav&gt;      &lt;!-- Navigation --&gt;
+    &lt;section id="home"&gt;...&lt;/section&gt;   &lt;!-- Hero --&gt;
+    &lt;section id="features"&gt;...&lt;/section&gt;
+    &lt;section id="gallery-modern"&gt;...&lt;/section&gt;
+    &lt;section id="location"&gt;...&lt;/section&gt;
+    &lt;section id="exclusive"&gt;...&lt;/section&gt;
+    &lt;section id="pricing"&gt;...&lt;/section&gt;
+    &lt;section id="testimonials"&gt;...&lt;/section&gt;
+    &lt;section id="faq"&gt;...&lt;/section&gt;
+    &lt;section id="contact"&gt;...&lt;/section&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+    &lt;!-- JS Scripts --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <!-- CSS Styling -->
+            <div class="section" id="css">
+                <h2>🎨 CSS Styling</h2>
+                <p>All styles are in <code>css/style.css</code>. Key sections:</p>
+                <pre><code>/* Variables */
+:root {
+    --primary: #9b7b5c;
+    --secondary: #2c2a29;
+    --bg-light: #fefcf8;
+    --bg-dark: #1e1b18;
+}
+
+/* Typography */
+body { font-family: 'Poppins', sans-serif; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+/* Buttons */
+.btn-elegant { background: var(--primary); border-radius: 40px; }
+
+/* Animations */
+.fade-up { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+.fade-up.appear { opacity: 1; transform: translateY(0); }</code></pre>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="section" id="javascript">
+                <h2>⚡ JavaScript</h2>
+                <p>All JS code is in <code>js/main.js</code>. Includes:</p>
+                <ul>
+                    <li><strong>Swiper Gallery Initialization</strong> - Responsive image carousel</li>
+                    <li><strong>Scroll Animation</strong> - Fade-up effect on scroll</li>
+                    <li><strong>Smooth Navigation</strong> - Smooth scroll to sections</li>
+                    <li><strong>Sticky Navbar</strong> - Navbar stays on top</li>
+                </ul>
+                <h3>Customizing Swiper Gallery:</h3>
+                <pre><code>const swiper = new Swiper('.gallery-swiper', {
+    loop: true,
+    slidesPerView: 1,
+    autoplay: { delay: 3500 },
+    breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+    }
+});</code></pre>
+            </div>
+
+            <!-- Images -->
+            <div class="section" id="images">
+                <h2>🖼️ Images</h2>
+                <p>Replace placeholder images with your own:</p>
+                <table>
+                    <tr>
+                        <th>Location</th>
+                        <th>File Path</th>
+                        <th>Recommended Size</th>
+                    </tr>
+                    <tr>
+                        <td>Hero Background</td>
+                        <td><code>assets/img/hero-bg.jpg</code></td>
+                        <td>1920x1080px</td>
+                    </tr>
+                    <tr>
+                        <td>Gallery Images</td>
+                        <td><code>assets/img/gallery/</code></td>
+                        <td>1200x800px</td>
+                    </tr>
+                    <tr>
+                        <td>Feature Cards</td>
+                        <td><code>assets/img/features/</code></td>
+                        <td>600x400px</td>
+                    </tr>
+                    <tr>
+                        <td>Villa Images</td>
+                        <td><code>assets/img/villas/</code></td>
+                        <td>800x600px</td>
+                    </tr>
+                </table>
+                <div class="warning">
+                    <strong>⚠️ Important:</strong> Replace all demo images with your own licensed images before selling
+                    or deploying.
+                </div>
+            </div>
+
+            <!-- Colors -->
+            <div class="section" id="colors">
+                <h2>🎨 Color Customization</h2>
+                <p>Edit CSS variables in <code>css/style.css</code>:</p>
+                <pre><code>:root {
+    --primary: #9b7b5c;     /* Main brand color - change this */
+    --secondary: #2c2a29;   /* Dark text color */
+    --bg-light: #fefcf8;    /* Light background */
+    --bg-dark: #1e1b18;     /* Dark footer background */
+}</code></pre>
+                <p>Current color palette:</p>
+                <p><span class="color-box" style="background: #9b7b5c;"></span> #9b7b5c - Primary Gold/Brown</p>
+                <p><span class="color-box" style="background: #2c2a29;"></span> #2c2a29 - Dark Gray</p>
+                <p><span class="color-box" style="background: #fefcf8;"></span> #fefcf8 - Off White</p>
+                <p><span class="color-box" style="background: #1e1b18;"></span> #1e1b18 - Footer Dark</p>
+            </div>
+
+            <!-- Fonts -->
+            <div class="section" id="fonts">
+                <h2>🔤 Fonts</h2>
+                <p>Google Fonts are used. Change in <code>index.html</code> head section:</p>
+                <pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"&gt;</code></pre>
+                <p>To change fonts:</p>
+                <ol>
+                    <li>Replace Google Fonts link with your desired font</li>
+                    <li>Update font-family in <code>css/style.css</code></li>
+                </ol>
+            </div>
+
+            <!-- Sections Guide -->
+            <div class="section" id="sections">
+                <h2>📌 Sections Guide</h2>
+
+                <h3 id="navbar">Navigation Bar</h3>
+                <p>Edit menu items in <code>index.html</code>:</p>
+                <pre><code>&lt;ul class="navbar-nav ms-auto"&gt;
+    &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#features"&gt;Features&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- Add more links here --&gt;
+&lt;/ul&gt;</code></pre>
+
+                <h3 id="hero">Hero Section</h3>
+                <p>Edit hero content:</p>
+                <pre><code>&lt;section id="home" class="hero"&gt;
+    &lt;h1 class="hero-title"&gt;Where Stories Become&lt;br&gt;Timeless Elegance&lt;/h1&gt;
+    &lt;p&gt;Your description here&lt;/p&gt;
+    &lt;a href="#gallery" class="btn-elegant"&gt;Explore&lt;/a&gt;
+&lt;/section&gt;</code></pre>
+
+                <h3 id="pricing">Pricing Section</h3>
+                <p>Each package is a column. Edit prices, features, and button links:</p>
+                <pre><code>&lt;div class="col-lg-4"&gt;
+    &lt;h3&gt;€490&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Luxury Suite&lt;/li&gt;
+        &lt;li&gt;Daily Breakfast&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;a href="#contact"&gt;Reserve Now&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+                <h3 id="faq">FAQ Accordion</h3>
+                <p>Add or remove FAQ items by copying the accordion-item block:</p>
+                <pre><code>&lt;div class="accordion-item"&gt;
+    &lt;button data-bs-target="#faq1"&gt;Your Question?&lt;/button&gt;
+    &lt;div id="faq1"&gt;Your Answer here.&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                <h3 id="contact">Contact Form</h3>
+                <p>Update form action to your mail handler:</p>
+                <pre><code>&lt;form action="your-php-handler.php" method="POST"&gt;</code></pre>
+            </div>
+
+            <!-- Credits -->
+            <div class="section" id="credits">
+                <h2>📷 Credits</h2>
+                <table>
+                    <tr>
+                        <th>Resource</th>
+                        <th>Link</th>
+                        <th>License</th>
+                    </tr>
+                    <tr>
+                        <td>Bootstrap 5</td>
+                        <td>getbootstrap.com</td>
+                        <td>MIT</td>
+                    </tr>
+                    <tr>
+                        <td>Font Awesome 6</td>
+                        <td>fontawesome.com</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td>Swiper.js</td>
+                        <td>swiperjs.com</td>
+                        <td>MIT</td>
+                    </tr>
+                    <tr>
+                        <td>Google Fonts</td>
+                        <td>fonts.google.com</td>
+                        <td>OFL</td>
+                    </tr>
+                    <tr>
+                        <td>Demo Images</td>
+                        <td>pexels.com / unsplash.com</td>
+                        <td>Free</td>
+                    </tr>
+                </table>
+                <div class="note">
+                    <strong>📸 Replace Demo Images:</strong> All demo images should be replaced with your own licensed
+                    images before final use.
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="section" id="support">
+                <h2>💬 Support</h2>
+                <p>For questions, issues, or customization requests:</p>
+                <ul>
+                    <li>📧 Email: <code>your-email@example.com</code></li>
+                    <li>🌐 ThemeForest Profile: <code>your-profile-link</code></li>
+                    <li>⏱️ Response Time: Within 24 hours (Mon-Fri)</li>
+                </ul>
+                <div class="success">
+                    <strong>✅ Support Includes:</strong> Bug fixes, compatibility issues, basic customization
+                    guidance.<br>
+                    <strong>❌ Not Included:</strong> Full website development, complex PHP integration, third-party
+                    plugin conflicts.
+                </div>
+            </div>
+
+            <!-- Changelog -->
+            <div class="section" id="changelog">
+                <h2>📝 Changelog</h2>
+                <pre><code>=== Version 1.0 ===
+Released: March 2025
+- Initial release
+- 10+ pre-designed sections
+- Fully responsive layout
+- Smooth scroll animations
+- Swiper gallery carousel
+- Bootstrap 5 framework
+- Font Awesome 6 icons
+- Pricing tables
+- Testimonials section
+- FAQ accordion
+- Contact form ready
+- SEO friendly structure</code></pre>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <hr>
+                <p>© 2025 Elysian - Timeless Elegance HTML Template. All rights reserved.</p>
+                <p>Made with ✦ for ThemeForest</p>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
